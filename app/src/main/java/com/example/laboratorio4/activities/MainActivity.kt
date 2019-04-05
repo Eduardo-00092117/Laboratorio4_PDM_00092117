@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.example.laboratorio4.R
 import com.example.laboratorio4.adapters.MovieAdapter
 import com.example.laboratorio4.network.NetworkUtils
@@ -46,6 +47,16 @@ class MainActivity : AppCompatActivity() {
         if (!movie_name_et.text.toString().isEmpty()){
             FetchMovie().execute(movie_name_et.text.toString())
         }
+    }
+
+    fun addMovieToList(movie: Movie){
+        movieList.add(movie)
+        movieAdapter.changeList(movieList)
+        Log.d("Number", movieList.size.toString())
+    }
+
+    private fun movieItemClicked(item: Movie){
+
     }
 
     private inner class FetchMovie: AsyncTask<String, Void, String>(){
